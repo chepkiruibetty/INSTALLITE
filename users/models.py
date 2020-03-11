@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 
-class Image(VoteModel,models.Model):
+class Image(models.Model):
     image = models.ImageField(upload_to='images/')
     image_name = models.CharField(max_length=50)
     image_caption = models.CharField(max_length=50)
