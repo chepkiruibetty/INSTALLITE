@@ -1,0 +1,33 @@
+{% extends 'instagram/base.html' %}
+{% block content %}
+<div class="container">
+    {% for image in images %}
+    <div class="row">
+        <div class=" col-md-3 ">
+        </div>
+        <div class=" col-md-6 mx-auto">
+            <div class="card mb-2 m-0" style="width:rem;">
+                <div class="card-header">
+                    <span><img src="{{image.profile.profile_image.url}}" alt=""
+                            data-target="#{{image.image_name}}{{image.id}}" data-toggle="modal"
+                            style="border-radius: 50%; width:50px; height:50px; border-color: brown; border-width: 1px;"></span>
+                    <span>
+                        <p>{{image.user.username}}</p>
+                    </span>
+                </div>
+                <img src="{{image.image.url}}" alt="" class="img-thumbnail img-responsive img-fluid m-0"
+                    data-toggle="modal" data-target="#{{image.name}}{{image.id}}">
+                <p>{{image.image_caption}}</p>
+                <p>{{image.image_name}}</p>
+                <div class="card-footer">
+                    <a href="#" class="action-icons"><i class="fa fa-heart-o"></i>{{image.likes}} likes </a>
+                    <div class="card-actions">
+                        <input class="comments-input" type="text" placeholder="Add a comment..." />
+                        <a href="{% url 'Comments' image.id%}" class="action-icons">click</a>
+                    </div>
+                    <p class="">posted:{{ image.date_posted|timesince}}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    {% endblock %}
