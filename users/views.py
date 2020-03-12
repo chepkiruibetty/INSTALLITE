@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render,redirect,HttpResponse,HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from .forms import UserSignUpForm
 from django.contrib.sites.shortcuts import get_current_site
@@ -10,6 +10,7 @@ from .token_generator import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from . models import *
+from .forms import ImageUploadForm,ImageProfileForm,CommentsForm
 
 def usersignup(request):
     if request.method == 'POST':
@@ -45,11 +46,87 @@ def activate_account(request, uidb64, token):
         user.is_active = True
         user.save()
         login(request, user)
-        return render(request, 'instagram/post.html')
+        return redirect('post')
 
     else:
         return HttpResponse('Activation link is invalid!')
         
 def post(request):
     images=Image.objects.all()
-    return render(request,'instagram/post.html',{"images":images})
+    comments=Comments.objects.all()
+    return render(request,'instagram/post.html',{"images":images,"comments":comments})
+
+def image_upload(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = ImageUploadForm(request.POST,request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.user = current_user
+            image.save()
+        return redirect('post')
+
+    else:
+        form = ImageUploadForm()
+        return render(request,'instagram/upload.html', {"form":form})
+
+def search_user(request):
+    
+    if 'search_user' in request.GET and request.GET["search_user"]:
+
+        search_term = request.GET.get("search_user")
+        searched_user = User.objects.filter(username__icontains=search_term)
+        message = f"{search_term}"  
+        return render(request, 'instagram/search.html', {"message": message, "users": searched_user})
+
+    else:
+        message = "You haven't searched for any term "
+        return render(request, 'instagram/search.html', {"message": message})
+
+def profile_info(request):
+    
+    current_user=request.user
+    profile_info = Profile.objects.filter(user=current_user).first()
+    posts =  request.user.image_set.all()
+    return render(request,'instagram/profile.html',{"images":posts,"profile":profile_info,"current_user":current_user})
+        
+def profile_edit(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = ImageProfileForm(request.POST,request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.user = current_user
+            image.save()
+        return redirect('profile')
+
+    else:
+        form = ImageProfileForm()
+        return render(request,'instagram/edit_profile.html',{"form":form})
+def add_comment(request,id):
+    current_user = request.user
+    image = Image.get_single_photo(id=id)
+    if request.method == 'POST':
+        form = CommentsForm(request.POST)
+        print(form)
+        
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = current_user
+            comment.image_id = id
+            comment.save()
+        return redirect('post')
+
+    else:
+        form = CommentsForm()
+        return render(request,'instagram/comments.html',{"form":form,"image":image})  
+
+def likes(request, image_id):
+    image = Image.objects.get(pk=image_id)
+    if image.likes.filter(id=request.user.id).exists():
+        image.likes.remove(request.user)
+        is_liked = False
+    else:
+        image.likes.add(request.user)
+        is_liked = True
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
