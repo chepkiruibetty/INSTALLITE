@@ -8,7 +8,7 @@ class Image(models.Model):
     image = models.ImageField(upload_to='images/')
     image_name = models.CharField(max_length=50)
     image_caption = models.CharField(max_length=50)
-    likes = models.PositiveIntegerField(default=0)
+    likes = models.ManyToManyField(User,related_name='likes', blank=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     date_posted = models.DateTimeField(default=timezone.now)
 
@@ -18,6 +18,9 @@ class Image(models.Model):
         
     def delete_image(self):
         self.delete()
+
+    def add_likes(self):
+        self.save()
         
     @classmethod    
     def update_caption(cls,id,new_caption):
