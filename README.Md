@@ -16,7 +16,7 @@ Users can sign up, login, view and post photos, search and follow other users.
 * Follow other users and see their pictures on my timeline.  
   
 ## deployed link
-- https://fastinsta.herokuapp.com/
+- https://ancient-falls-03714.herokuapp.com/
 
   
 ### Setup and Installation  
@@ -24,7 +24,7 @@ To get the project .......
   
 ##### Cloning the repository:  
  ```bash 
- https://github.com/chepkiruibetty/Instagram-clone
+ https://github.com/chepkiruibetty/INSTALLITE
 ```
 ##### Navigate into the folder and install requirements  
  ```bash 
@@ -41,7 +41,7 @@ cd instagram pip install -r requirements.txt
  ##### Setup Database  
   SetUp your database User,Password, Host then make migrate  
  ```bash 
-python manage.py makemigrations instagram
+python manage.py makemigrations users
  ``` 
  Now Migrate  
  ```bash 
