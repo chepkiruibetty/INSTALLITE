@@ -1,30 +1,29 @@
+{% extends 'registration/base.html' %}
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>User sign up</title>
-</head>
-<body>
-    <h2>Sign up</h2>
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+  <div class="card">
+    <div class="card-header">
+      <div class="text-center">
+        <img class="logo"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/120px-Instagram_logo.svg.png"
+            alt="Instagram">
+    </div>
+      <h3 class="text-center">Sign up</h3>
+      <h6 class="col1 text-center">Sign up to see photos and videos from your friends.</h6>
+    </div>
   <form method="post">
     {% csrf_token %}
-      {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        {% if field.help_text %}
-          <small style="display: none">{{ field.help_text }}</small>
-        {% endif %}
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-      </p>
-      {% endfor %}
-    <button type="submit">Sign up</button>
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">Sign Up</button>
   </form>
-</body>
-</html>
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}
