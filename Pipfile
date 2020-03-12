@@ -15,6 +15,7 @@ whitenoise = "*"
 django-boostrap4 = "*"
 dj-database-url = "*"
 gunicorn = "*"
+pipenv = "*"
 
 [requires]
 python_version = "3.6"
