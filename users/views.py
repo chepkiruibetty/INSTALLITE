@@ -9,6 +9,7 @@ from django.template.loader import render_to_string
 from .token_generator import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
+from . models import *
 
 def usersignup(request):
     if request.method == 'POST':
@@ -32,6 +33,8 @@ def usersignup(request):
     else:
         form = UserSignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+
 def activate_account(request, uidb64, token):
     try:
         uid = force_bytes(urlsafe_base64_decode(uidb64))
@@ -42,6 +45,11 @@ def activate_account(request, uidb64, token):
         user.is_active = True
         user.save()
         login(request, user)
-        return HttpResponse('Your account has been activate successfully')
+        return render(request, 'instagram/post.html')
+
     else:
         return HttpResponse('Activation link is invalid!')
+        
+def post(request):
+    images=Image.objects.all()
+    return render(request,'instagram/post.html',{"images":images})
