@@ -80,7 +80,7 @@ If you have any question or contributions, please email me at [chepkiruibetty64@
 <img src="db/diagram.png">
 
 ## codebeat
-- [![codebeat badge](https://codebeat.co/badges/05f71e99-9f1d-4076-a6dc-5a2412c940da)](https://codebeat.co/projects/github-com-chepkiruibetty-instagram-clone-master)
+- [![codebeat badge](https://codebeat.co/badges/dd43cf3b-9449-413b-8437-2d993fa8d2d2)](https://codebeat.co/projects/github-com-chepkiruibetty-installite-master)
 
 ## license
 
