@@ -14,6 +14,7 @@ django-registration = "*"
 whitenoise = "*"
 django-boostrap4 = "*"
 dj-database-url = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.6"
