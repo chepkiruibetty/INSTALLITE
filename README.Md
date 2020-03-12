@@ -77,7 +77,7 @@ Open the application on your browser `127.0.0.1:8000`.
 If you have any question or contributions, please email me at [chepkiruibetty64@gmail.com]  
 
 ## Database
-<img src="db/diagram.png">
+<img src="db.png">
 
 ## codebeat
 - [![codebeat badge](https://codebeat.co/badges/dd43cf3b-9449-413b-8437-2d993fa8d2d2)](https://codebeat.co/projects/github-com-chepkiruibetty-installite-master)
