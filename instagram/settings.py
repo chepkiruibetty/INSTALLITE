@@ -60,7 +60,7 @@ ROOT_URLCONF = 'instagram.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -141,6 +141,7 @@ EMAIL_HOST_PASSWORD = 'leahkipruto08'
 EMAIL_PORT = 587
 
 
-LOGIN_REDIRECT_URL='/post'
+LOGIN_REDIRECT_URL='post'
+LOGOUT_REDIRECT_URL='index'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
