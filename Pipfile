@@ -11,6 +11,9 @@ django = "==2.2.10"
 pillow = "*"
 django-crispy-forms = "*"
 django-registration = "*"
+whitenoise = "*"
+django-boostrap4 = "*"
+dj-database-url = "*"
 
 [requires]
 python_version = "3.6"
