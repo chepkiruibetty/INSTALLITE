@@ -1,4 +1,4 @@
-# Instagram Clone
+# INSTALLITE
 
 ## Author
 - Chepkirui Betty
