@@ -16,14 +16,48 @@
     </div>
       <h3 class="text-center">Sign up</h3>
       <h6 class="col1 text-center">Sign up to see photos and videos from your friends.</h6>
+      <span class="button-box">
+          <button class="btn btn-primary text-center ml-4" type="submit" name="submit">Log in with
+              Facebook</button>
+      </span>
     </div>
   <form method="post">
     {% csrf_token %}
     {{ form|crispy }}
     <button type="submit" class="btn btn-primary">Sign Up</button>
+    <p> Have an account ? <a href="/accounts/login">Log in</a></p>
+    <p><a href="#">Forgot Password ?</a></p>
   </form>
   </div>
 </div>
 </div>
 </div>
+<br>
+<footer class="footer myfoot" role="contentinfo">
+    <div class="footer-container">
+      <nav class="footer-nav list-inline text-center p-10" role="navigation">
+        <ul>
+          <li class="list-inline-item"><a href="">About Us</a></li>
+          <li class="list-inline-item"><a href="">Support</a></li>
+          <li class="list-inline-item"><a href="">Blog</a></li>
+          <li class="list-inline-item"><a href="">Press</a></li>
+          <li class="list-inline-item"><a href="">Api</a></li>
+          <li class="list-inline-item"><a href="">Jobs</a></li>
+          <li class="list-inline-item"><a href="">Privacy</a></li>
+          <li class="list-inline-item"><a href="">Terms</a></li>
+          <li class="list-inline-item"><a href="">Directory</a></li>
+          <li>
+            <span class="language list-inline-item">Language
+              <select name="language" class="select" onchange="la(this.value)">
+                <option value="#">English</option>
+                <option value="http://ru-instafollow.bitballoon.com">Russian</option>
+              </select>
+            </span>
+          </li>
+        </ul>
+      </nav>
+      
+    </div> <!-- Footer container end -->
+  </footer>
+  
 {% endblock %}
