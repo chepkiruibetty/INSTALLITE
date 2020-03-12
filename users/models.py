@@ -1,5 +1,6 @@
 from django.db import models 
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 
@@ -9,6 +10,8 @@ class Image(models.Model):
     image_caption = models.CharField(max_length=50)
     likes = models.PositiveIntegerField(default=0)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
+    date_posted = models.DateTimeField(default=timezone.now)
+
     
     def save_image(self):
         self.save()
