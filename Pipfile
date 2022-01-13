@@ -17,7 +17,7 @@ sqlparse = "==0.3.1"
 whitenoise = "==5.0.1"
 confusable_homoglyphs = "==3.2.0"
 Django = "==2.2.10"
-Pillow = "==7.0.0"
+Pillow = "==9.0.0"
 
 [requires]
 python_version = "3.7"
